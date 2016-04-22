@@ -3,7 +3,7 @@
  * controllo luminosità led tramite comando PWM.
  * 
  */
-int ledPin = 1;    // LED connected to digital pin 9
+int ledPin = 3;    // LED connected to digital pin 3
 
 void setup() {
   pinMode(ledPin, OUTPUT);
