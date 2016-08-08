@@ -1,4 +1,4 @@
-// Esempio 03: antirimbalzo
+// Esempio 03: stato precedente
 // accendi il led appena è premuto il pulsante mantenendolo acceso quando si rilascia
 // premendo una seconda volta il pulsante spegne il led
 
