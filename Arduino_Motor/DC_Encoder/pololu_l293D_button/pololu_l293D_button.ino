@@ -1,4 +1,4 @@
-/* Dave Calaway 21/07/2016 - V0.4
+/* Dave Calaway 03/05/2017 - V0.5
    GIT: https://goo.gl/O5A4XS
 
    MicroControllers, same code: 
@@ -17,14 +17,16 @@
 #define gradi 850
 // attesa prima del ritorno a 0, 1000 = 1sec
 #define pausa 1000
+//Velocità motori 0-255
+#define Speed 50
 //---------------------------------------------------------------------------
 
 // Button's pin
 const int buttonPin = 2;
 bool buttonState = 0;
 
-// the motor will start at clockwise, speed 0-255 
-int clockwise = 50;
+// the motor will start at clockwise
+int clockwise = Speed;
 int anticlockwise = 0;
 
 /* L293D: motor terminals and enable pin */
@@ -105,12 +107,12 @@ void encoder1() {
   digitalWrite(motorRightEnable_pin, LOW);
 
   if (clockwise != 0 ) {
-    anticlockwise = 50;
+    anticlockwise = Speed;
     clockwise = 0;
   }
   else {
     anticlockwise = 0;
-    clockwise = 50;
+    clockwise = Speed;
   }
   encoder0Pos1 = 0;
   // when the motor was run forward and back, enable the button
