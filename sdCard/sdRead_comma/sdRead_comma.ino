@@ -31,7 +31,7 @@ const int chipSelect = 4;
 byte fileN = 0;
 byte i = 0;
 // array dimenion
-int base[6] = {5, 4, 3, 2, 1, 0};
+byte base[6] = {5, 4, 3, 2, 1, 0};
 
 void setup() {
   // Open serial communications and wait for port to open:
@@ -55,6 +55,7 @@ void setup() {
   // so you have to close this one before opening another.
   File dataFile = SD.open("1.txt");
   Serial.println("1.txt");
+      dataFile.close();
 
   // if the file is available, write to it:
   if (dataFile) {
@@ -67,7 +68,7 @@ void setup() {
       Serial.println(myString);
 
       // First comma
-      int commaIndex = myString.indexOf(',');
+      byte commaIndex = myString.indexOf(',');
       String Value = myString.substring(0, commaIndex);
       base[i] = Value.toInt();
       Serial.print("What i read: ");
@@ -77,7 +78,7 @@ void setup() {
       int OLDcommaIndex = commaIndex + 1;
       while ( a == 1 ) {
         i = i + 1;
-        int NextcommaIndex = myString.indexOf(',', OLDcommaIndex);
+        byte NextcommaIndex = myString.indexOf(',', OLDcommaIndex);
         Serial.print("Next comma: ");
         Serial.println(NextcommaIndex);
         Value = myString.substring(OLDcommaIndex, NextcommaIndex);
