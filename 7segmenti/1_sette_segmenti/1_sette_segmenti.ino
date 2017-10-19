@@ -1,4 +1,4 @@
-// Sette segmenti semplice 
+// Sette segmenti semplice, accende un led dopo l'altro
 
 void setup()
 {
