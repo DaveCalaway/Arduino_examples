@@ -32,3 +32,6 @@ void loop(void) {
   }
   delay(1000);
 }
+
+// Perchè serve una resistenza da 10K?
+//    concetto di pin in alta impedenza e partitore di tensione.
