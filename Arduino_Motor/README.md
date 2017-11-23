@@ -1,13 +1,13 @@
-# Arduino_Motor examples
+# Arduino_Motor examples  
 
-###DC_Encoder_L293D Control of DC motor with Encoder via Arduino
+###DC_Encoder_L293D Control of DC motor with Encoder via Arduino  
 Example made for control DC motor, in my case Pololu Micro Metal Gearmotor HP, an Encoder, Optical Encoder Pololu, and button.
 Guide: http://goo.gl/WGbBj4
 
-###Stepper_L293D
+###Stepper_L293D  
 Example made for control stepper motors with L293D
 
-###Motor theory
+###Motor theory  
 SparkFun guide: https://goo.gl/fsHhYg  
 
 No library needed.
