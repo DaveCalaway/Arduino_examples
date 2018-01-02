@@ -1,8 +1,10 @@
 /*
   KeyboardAndMouseControl
 
+  Schematic: https://goo.gl/Q6ESqC
+
   Controls the mouse from five pushbuttons on an Arduino Leonardo, Micro or Due.
-  No resistors needed!
+  No resistors need!
 
   Hardware:
   - five pushbuttons attached to D2, D3, D4, D5, D6
@@ -14,7 +16,7 @@
   mouse! Make sure you have control before you use the mouse commands.
 
   created by Tom Igoe
-  update by Davide Gariselli ( 
+  update by Davide Gariselli ( https://github.com/DaveCalaway )
 
   This example code is in the public domain.
 */
