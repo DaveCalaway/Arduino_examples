@@ -19,7 +19,7 @@
 *.so
 *.so.*
 *.dylib
-*.ds_store
+*.DS_Store
 
 # Executables
 *.exe
