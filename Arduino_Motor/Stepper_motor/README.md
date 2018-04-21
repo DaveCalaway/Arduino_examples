@@ -2,7 +2,7 @@
 
 ### Stepper Motor guide:
 
-#### Hardware
+### Hardware
 We must need to understand what type of motor you have:
 ![GitHub Logo](http://89.22.98.13/pylog/cnt/projects/shapeoko/_img/stepper/stepper.png)
 * Bipolar
@@ -18,7 +18,7 @@ My motor has different wires, have we a rule beautine wires and type of motor?
 * 5 & 6 wires = Bipolar & Unipolar
 
 
-#### Software
+### Software
 Don't worry about the software.
 All software in this guide are mode for Bipolar & Unipolar motors.
 
