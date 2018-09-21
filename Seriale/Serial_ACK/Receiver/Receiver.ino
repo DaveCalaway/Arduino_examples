@@ -1,88 +1,88 @@
-/*
-   mySerial ACK - Receiver
-*/
+// Receive
+// That sketch receive through Software Serial same bytes with start- and end-markers,
+// send back an ack and prints it over the Hardware Serial.
 
-#define waitTime 1000 //ms
-#define ack 255
-#define nack 254
+
 #include <SoftwareSerial.h>
+#define ack 255
 
 const byte numBytes = 32;
 byte receivedBytes[numBytes];
 byte copy_ndx = 0;
+
 boolean newData = false;
 
-//byte data[5] = {0, 0, 0, 0, 0};
+SoftwareSerial mySerial(10, 11); // RX, TX Software Serial
 
-SoftwareSerial mySerial(8, 9);
+//============
 
 void setup() {
   Serial.begin(9600);
-  mySerial.begin(9600);
-
-}
-
-void loop() {
-  Serial.println("Waiting message");
-
-  recvWithStartEndMarkers(0);
-
-  Serial.println("Received.");
-  for (byte i = 0; i < 4; i++) {
-    Serial.print(receivedBytes[i]);
-  }
+  mySerial.begin(9600); // Software Serial
+  Serial.println("Ready");
   Serial.println();
 }
 
+//============
+
+void loop() {
+  recvWithStartEndMarkers();
+  if (newData == true) {
+    Serial.print("I received: ");
+    for (byte i = 0; i < copy_ndx; i++) {
+      Serial.print( receivedBytes[i] );
+    }
+    Serial.println();
+    newData = false;
+
+    Serial.println("Send ACK.");
+    sendACK();
+  }
+}
+
 //
-// Recever and drop the start/end markers
-// if transfer OK --> return 1
+//============
 //
-// if time out --> return 0
+void sendACK() {
+  mySerial.write(0x3C);
+  mySerial.write(ack);
+  mySerial.write(0x3E);
+}
+
+
 //
-bool recvWithStartEndMarkers(bool timeout) {
+//============
+//
+void recvWithStartEndMarkers() {
   static boolean recvInProgress = false;
   static byte ndx = 0;
-  char startMarker = 0x3C; // <
-  char endMarker = 0x3E; // >
-  char rb;
-  unsigned long now = millis();
+  byte startMarker = 0x3C; // <
+  byte endMarker = 0x3E; // >
+  byte rb;
 
-  while (1) {
+  while (mySerial.available() > 0 && newData == false) {
+    rb = mySerial.read();
 
-    if (  (millis() - now ) < waitTime ) {
-      Serial.println("dentro");
-      rb = mySerial.read();
-
-      if (recvInProgress == true) {
-        if (rb != endMarker) {
-          receivedBytes[ndx] = rb;
-          ndx++;
-          if (ndx >= numBytes) {
-            ndx = numBytes - 1;
-          }
-        }
-        else {
-          receivedBytes[ndx] = '\0'; // terminate the string
-          recvInProgress = false;
-          copy_ndx = ndx;
-          ndx = 0;
-          //newData = true;
-          // if i have not timeout, send the ACK
-          if (timeout == 0) {
-            mySerial.write(ack);
-            Serial.println("Send ACK");
-          }
-          return 1; // all received
+    if (recvInProgress == true) {
+      if (rb != endMarker) {
+        receivedBytes[ndx] = rb;
+        ndx++;
+        if (ndx >= numBytes) {
+          ndx = numBytes - 1;
         }
       }
-      else if (rb == startMarker) {
-        recvInProgress = true;
+      else {
+        receivedBytes[ndx] = '\0'; // terminate the string
+        recvInProgress = false;
+        copy_ndx = ndx;
+        ndx = 0;
+        newData = true;
       }
     }
-    else {
-      if ( timeout == 1 ) return 0; // time out
-      else now = millis(); // go on, no time out
+    else if (rb == startMarker) {
+      recvInProgress = true;
     }
   }
 }
+
+
