@@ -1,8 +1,9 @@
 // Sender
-// That sketch one array of bytes to another Arduino by serial, wait 
+// That sketch one array of bytes to another Arduino by serial, wait
 // the ACK or retransmits.
 
 #include <SoftwareSerial.h>
+#define ack_time 250 // waiting time for the ack
 #define ack 255
 
 byte test [] = {1, 2, 3, 4, 5, 6, 7};
@@ -46,7 +47,7 @@ void loop() {
 bool waitACK() {
 
   // waiting the Receiver can send the ACK
-  delay(250);
+  delay(ack_time);
 
   recvWithStartEndMarkers();
 
@@ -55,7 +56,6 @@ bool waitACK() {
     return 1;
   }
   else {
-    newData = false;
     return 0;
   }
 }
@@ -93,6 +93,11 @@ void recvWithStartEndMarkers() {
       recvInProgress = true;
     }
   }
+  // the buffer is empty but you have not received the endMarker
+  if (newData == false) {
+    // clean the receiver array
+    for (byte i = 0; i < ndx; i++) {
+      receivedBytes[ndx] = 0;
+    }
+  }// That cause the resend
 }
-
-

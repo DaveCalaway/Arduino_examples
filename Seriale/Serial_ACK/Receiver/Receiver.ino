@@ -83,6 +83,11 @@ void recvWithStartEndMarkers() {
       recvInProgress = true;
     }
   }
+  // the buffer is empty but you have not received the endMarker
+  if (newData == false) {
+    // clean the receiver array
+    for (byte i = 0; i < ndx; i++) {
+      receivedBytes[ndx] = 0;
+    }
+  }// That cause the resend
 }
-
-
