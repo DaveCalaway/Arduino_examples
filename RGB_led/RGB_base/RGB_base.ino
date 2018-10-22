@@ -1,62 +1,42 @@
-  /* 
- Uso di un led RGB
-  COMMON_ANODE, 255 = OFF
- Spegnimento graduale del LED Verde
+/*
+   RGB base
+
+   Accendo e spengo i singoli leds. In questo esempio si usa un
+   RBG led di tipo Catodo Comune.
 */
 
-// pin a cui collegare i piedini del LED RGB
-const int ROSSO = 11;
-const int BLU = 9;
-const int VERDE = 10;
-
-// tempo di transizione colore
-const int delayTime = 20;
+// Dichiaro le variabili
+int ledVerde = 11;
+int ledBlu = 10;
+int ledRosso = 9;
+int tempo = 500;
 
 void setup() {
-  // imposta il pin digitale come output
-  pinMode(VERDE, OUTPUT);
-  pinMode(BLU, OUTPUT);
-  pinMode(ROSSO, OUTPUT);
-
-
-  // si impostano ad HIGH i pin VERDE, BLU, ROSSO
-  // inizialmente il led RGB sarà spento, perchè COMMON_ANODE
-  digitalWrite(VERDE, HIGH);
-  digitalWrite(BLU, HIGH);
-  digitalWrite(ROSSO, HIGH);
+  // put your setup code here, to run once:
+  pinMode(ledVerde, OUTPUT);
+  pinMode(ledBlu, OUTPUT);
+  pinMode(ledRosso, OUTPUT);
 }
 
-// definizione di variabili globali
-int ValVerde;
-
 void loop() {
-  // spegnimento graduale del verde
+  // put your main code here, to run repeatedly:
+  digitalWrite(ledVerde, HIGH);
+  delay(tempo);
+  digitalWrite(ledVerde, LOW);
+  delay(tempo);
 
-  // coordinate RGB del verde: 0, 255, 0
+  digitalWrite(ledBlu, HIGH);
+  delay(tempo);
+  digitalWrite(ledBlu, LOW);
+  delay(tempo);
 
-  ValVerde = 255;
-
-  for( int i = 0 ; i < 255 ; i += 1 ){
-
-    ValVerde -= 1;
-
-    /* ad ogni ciclio la differenza
-     255 - ValVerde AUMENTA
-     provocando un graduale spegnimento del verde
-     */
-
-    analogWrite( VERDE, 255 - ValVerde );
-
-    // attesa di 20 ms per percepire il colore
-    delay( delayTime );
-  }
+  digitalWrite(ledRosso, HIGH);
+  delay(tempo);
+  digitalWrite(ledRosso, LOW);
+  delay(tempo);
 }
 
 /*
- * Esercizio 1:
- * spegnere il led rosso.
- * 
- * Esercizio 2:
- * spegnere il led blu.
- * 
- */
+    Esercizo 1: accendo in sequenza il ledRosso, ledVerde e ledBlu
+    Esercizo 2: creo una combinazione a piacere mixando i colori
+*/
