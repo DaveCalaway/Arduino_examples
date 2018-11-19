@@ -17,7 +17,7 @@ We must need to understand what type of motor you have:
 Why we need to understand what type of motor we have?  
 Becouse the driver change if you have Bi or Uni.
 * Bipolar = L293D ( H-Bridge https://goo.gl/TU3yrG )
-* Unipolar = ULN2023 ( Darlington Transistor Array https://goo.gl/8j6WHp )
+* Unipolar = ULN2003 ( Darlington Transistor Array https://goo.gl/8j6WHp )
 
 My motor has different wires, have we a rule beautine wires and type of motor?  
 * 4 wires = Bipolar

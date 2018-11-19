@@ -1,43 +1,42 @@
 /*
- * Drive a Stepper Motor ( uni or bi polar ), when button is pressed, forword to XStep, little Break, 
- * and back to -Xstep.
- * 
- * Davide Gariselli 
- * 
- * No external libray needed.
- * This example code is in the public domain.
+ Stepper Motor Control - one revolution
+
+ This program drives a unipolar or bipolar stepper motor.
+ The motor is attached to digital pins 8 - 11 of the Arduino.
+
+ The motor should revolve one revolution in one direction, then
+ one revolution in the other direction.
+
+
+ Created 11 Mar. 2007
+ Modified 30 Nov. 2009
+ by Tom Igoe
+
  */
 
 #include <Stepper.h>
 
-#define pinButton 2
-#define Delay 1000
-#define Speed 60 //rpm = Revolutions per minute
-#define Step 10
-
-bool button = 1;
 const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
 // for your motor
 
-// initialize the stepper library on pins
-Stepper myStepper(stepsPerRevolution, 3, 5, 6, 9);
+// initialize the stepper library on pins 8 through 11:
+Stepper myStepper(stepsPerRevolution, 8, 9, 10, 11);
 
 void setup() {
-  pinMode(pinButton, INPUT);
-  myStepper.setSpeed(Speed); //rpm
+  // set the speed at 60 rpm:
+  myStepper.setSpeed(60);
+  // initialize the serial port:
   Serial.begin(9600);
 }
 
 void loop() {
-  if ( analogRead(pinButton) == 0 ) {
-    delay(20);
-    Serial.println("clockwise: " + Step);
-    myStepper.step(Step);
-    delay(Delay);
+  // step one revolution  in one direction:
+  Serial.println("clockwise");
+  myStepper.step(stepsPerRevolution);
+  delay(500);
 
-    Serial.println("anti-clockwise: -" + Step);
-    myStepper.step(-Step);
-    delay(20);
-  }
+  // step one revolution in the other direction:
+  Serial.println("counterclockwise");
+  myStepper.step(-stepsPerRevolution);
+  delay(500);
 }
-
