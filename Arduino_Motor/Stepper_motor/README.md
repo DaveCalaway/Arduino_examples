@@ -6,7 +6,13 @@
 We must need to understand what type of motor you have:
 ![GitHub Logo](http://89.22.98.13/pylog/cnt/projects/shapeoko/_img/stepper/stepper.png)
 * Bipolar
+  - Need Voltage Reversal
+  - Higher Torque
+  - Slower max speed
 * Unipolar
+  - No Voltage Reversal
+  - Lower Torque
+  - Higher max speed
 
 Why we need to understand what type of motor we have?  
 Becouse the driver change if you have Bi or Uni.
