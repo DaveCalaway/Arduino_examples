@@ -1,6 +1,8 @@
 # Arduino_examples
-Raccolto d'esempi per Arduino.
+Raccolto d'esempi per MicroControllore Arduino.    
 
-Sito di riferimento: http://goo.gl/oVr3XT
+**Argomenti Corso Base:** ![PDF](Programma_Ardu_base.pdf)  
+
+**Argomenti Corso Intermedio:** ![PDF](Programma_Ardu_Intermedio.pdf)  
 
 *Dave.Calaway*
